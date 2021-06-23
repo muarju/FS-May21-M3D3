@@ -45,7 +45,7 @@ window.onload = () => {
   }
   
   const loadcards = () => {
-    fetch("https://api.pexels.com/v1/search?query=cat", {
+    fetch("https://api.pexels.com/v1/search?query=wallpaper", {
       headers: {
         Authorization: "563492ad6f917000010000016c4555e8c26d439eae2bb113c225e0e5",
       },
@@ -160,10 +160,10 @@ window.onload = () => {
       })
     )
   }
-//EVEN MORE EXTRAS (outcome in the console)
-let arrayOfUrlStr = [];
 
-fetch("https://api.pexels.com/v1/search?query=cat", {
+let arrayOfUrlStr = [];
+//EVEN MORE EXTRAS (outcome in the console)
+fetch("https://api.pexels.com/v1/search?query=model", {
     headers: {
       Authorization: "563492ad6f917000010000016c4555e8c26d439eae2bb113c225e0e5",
     },
@@ -175,9 +175,11 @@ fetch("https://api.pexels.com/v1/search?query=cat", {
         arrayOfUrlStr.push(image.src.medium);
     })
     //EX12
+
     let filteredArtists = mydata.photos.filter(
         (pic) =>
-          pic.photographer.includes("EVG")
+          pic.photographer.includes("Brandon") ||
+          pic.photographer.includes("Felix")
       );
       console.log("FILTERED ARTISTS", filteredArtists);
     })
