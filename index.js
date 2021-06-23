@@ -1,3 +1,5 @@
+
+
 window.onload = () => {
     const loadImagesButton = document.querySelector("#load-images-button")
     loadImagesButton.addEventListener("click", loadcards)
@@ -159,25 +161,20 @@ window.onload = () => {
     )
   }
 
-  /*
-  function modalimg() {
-    const btnList = document.querySelectorAll(".btn-modal")
-    const imgTag = document.querySelectorAll(".card>img")
-    console.log(imgTag)
-    console.log(imgTag.src)
-    btnList.forEach((btn, i) =>
-      btn.addEventListener("click", () => {
-        imgTag[i].setAttribute("data-toggle", "modal");
-        imgTag[i].setAttribute("data-target", "#exampleModal");
-        let modal = document.querySelector(".modal");
-        let image = document.createElement("img");
-        image.src = imgTag[i].src;
-        image.className = "img-fluid w-100";
-        console.log(image)
-        modal.querySelector(".modal-body").innerText = "";
-        modal.querySelector(".modal-body").appendChild(image);
-      })
-    )
-  }
+let arrayOfUrlStr = [];
+//EVEN MORE EXTRAS (outcome in the console)
+fetch("https://api.pexels.com/v1/search?query=cat", {
+    headers: {
+      Authorization: "563492ad6f917000010000016c4555e8c26d439eae2bb113c225e0e5",
+    },
+  })
+  .then((data) => data.json())
+  .then((mydata) =>{
+    //EX11  (arrOfUrlStr is at the top of the file)
+    mydata.photos.map((image) => {
+        arrayOfUrlStr.push(image.src.medium);
+    })
+    })
+  .catch((error) => console.error(alert(error)))
   
-*/
+  console.log("ARRAY OF URLS", arrayOfUrlStr)
