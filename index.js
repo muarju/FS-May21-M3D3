@@ -3,6 +3,8 @@ window.onload = () => {
     loadImagesButton.addEventListener("click", loadcards)
     const loadImagesButtonSecondary = document.querySelector("#load-Secondary-images-button")
     loadImagesButtonSecondary.addEventListener("click", loadcardsSecondary)
+    const loadSearchImages = document.querySelector("#search-button")
+    loadSearchImages.addEventListener("click", loadcardsbySearch)
   }
   
   const loadcards = () => {
@@ -27,7 +29,19 @@ window.onload = () => {
       .then(hideCard)
       .catch((error) => console.error(error))
   }
-  
+  const loadcardsbySearch = () => {
+    const userQuery = document.querySelector("#search-input")
+    fetch(`https://api.pexels.com/v1/search?query=${userQuery.value}`, {
+      headers: {
+        Authorization: "563492ad6f917000010000016c4555e8c26d439eae2bb113c225e0e5",
+      },
+    })
+      .then((data) => data.json())
+      .then((mydata) => getPhotos(mydata))
+      .then(hideCard)
+      .catch((error) => console.error(error))
+    userQuery.value=''
+  }
   
   function getPhotos(mydata) {
     const cardImgs = document.querySelector("#main-cards")
