@@ -16,7 +16,7 @@ window.onload = () => {
       .then((data) => data.json())
       .then((mydata) => getPhotos(mydata))
       .then(hideCard)
-      .catch((error) => console.error(error))
+      .catch((error) => console.error(alert(error)))
   }
   const loadcardsSecondary = () => {
     fetch("https://api.pexels.com/v1/search?query=dog", {
@@ -27,7 +27,7 @@ window.onload = () => {
       .then((data) => data.json())
       .then((mydata) => getPhotos(mydata))
       .then(hideCard)
-      .catch((error) => console.error(error))
+      .catch((error) => console.error(alert(error)))
   }
   const loadcardsbySearch = () => {
     const userQuery = document.querySelector("#search-input")
@@ -39,7 +39,8 @@ window.onload = () => {
       .then((data) => data.json())
       .then((mydata) => getPhotos(mydata))
       .then(hideCard)
-      .catch((error) => console.error(error))
+      .catch((error) => console.error(alert(error)))
+      
     userQuery.value=''
   }
   
