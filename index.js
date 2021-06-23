@@ -39,7 +39,6 @@ window.onload = () => {
     })
       .then((data) => data.json())
       .then((mydata) => carouselPhotos(mydata))
-      .then(hideCard)
       .catch((error) => console.error(alert(error)))
   }
   
@@ -84,8 +83,10 @@ window.onload = () => {
     console.log(mydata)
     
     const cardImgs = document.querySelector("#main-cards")
+    const allmodal = document.querySelector("#allmodal")
     const { photos } = mydata
     cards = ""
+    modal = ""
     photos.forEach((photo) => {
       cards += `
         <div class="col-md-4">
@@ -104,7 +105,8 @@ window.onload = () => {
                 <div class="btn-group">
                   <button
                     type="button"
-                    class="btn btn-sm btn-outline-secondary"
+                    class="btn btn-sm btn-outline-secondary btn-modal"
+                    data-toggle="modal" data-target="#s${photo.id}"
                   >
                     View
                   </button>
@@ -121,8 +123,28 @@ window.onload = () => {
           </div>
         </div>
       `
+      modal +=`<div class="modal fade" id="s${photo.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          <img src=${photo.src.landscape} alt="" class="img-fluid">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>`
     })
     cardImgs.innerHTML = cards
+    allmodal.innerHTML = modal
 
     setTimeout(function () { alert(mydata.per_page + ' images loaded'); }, 5000);
   }
@@ -136,4 +158,26 @@ window.onload = () => {
       })
     )
   }
+
+  /*
+  function modalimg() {
+    const btnList = document.querySelectorAll(".btn-modal")
+    const imgTag = document.querySelectorAll(".card>img")
+    console.log(imgTag)
+    console.log(imgTag.src)
+    btnList.forEach((btn, i) =>
+      btn.addEventListener("click", () => {
+        imgTag[i].setAttribute("data-toggle", "modal");
+        imgTag[i].setAttribute("data-target", "#exampleModal");
+        let modal = document.querySelector(".modal");
+        let image = document.createElement("img");
+        image.src = imgTag[i].src;
+        image.className = "img-fluid w-100";
+        console.log(image)
+        modal.querySelector(".modal-body").innerText = "";
+        modal.querySelector(".modal-body").appendChild(image);
+      })
+    )
+  }
   
+*/
