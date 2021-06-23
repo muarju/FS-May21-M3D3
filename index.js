@@ -160,9 +160,9 @@ window.onload = () => {
       })
     )
   }
-
-let arrayOfUrlStr = [];
 //EVEN MORE EXTRAS (outcome in the console)
+let arrayOfUrlStr = [];
+
 fetch("https://api.pexels.com/v1/search?query=cat", {
     headers: {
       Authorization: "563492ad6f917000010000016c4555e8c26d439eae2bb113c225e0e5",
@@ -174,6 +174,12 @@ fetch("https://api.pexels.com/v1/search?query=cat", {
     mydata.photos.map((image) => {
         arrayOfUrlStr.push(image.src.medium);
     })
+    //EX12
+    let filteredArtists = mydata.photos.filter(
+        (pic) =>
+          pic.photographer.includes("EVG")
+      );
+      console.log("FILTERED ARTISTS", filteredArtists);
     })
   .catch((error) => console.error(alert(error)))
   
