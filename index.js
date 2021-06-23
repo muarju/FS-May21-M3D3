@@ -5,6 +5,42 @@ window.onload = () => {
     loadImagesButtonSecondary.addEventListener("click", loadcardsSecondary)
     const loadSearchImages = document.querySelector("#search-button")
     loadSearchImages.addEventListener("click", loadcardsbySearch)
+
+    //task no 9
+    
+    function carouselPhotos(mydata) {
+        console.log(mydata)
+        const carouselInner = document.querySelector(".carousel-inner")
+       
+        const { photos } = mydata
+        carouselitem = ""
+        photos.forEach((photo,index) => {
+            if(index==0){
+                carouselitem += `
+                    <div class="carousel-item active">
+                    <img src="${photo.src.landscape}" class="d-block w-100" alt="">
+                    </div>
+                    `
+                }else{
+                    carouselitem += `
+                    <div class="carousel-item">
+                    <img src="${photo.src.landscape}" class="d-block w-100" alt="">
+                    </div>
+                    `
+                }
+        })
+        carouselInner.innerHTML = carouselitem
+      }
+
+    fetch("https://api.pexels.com/v1/search?query=forest", {
+      headers: {
+        Authorization: "563492ad6f917000010000016c4555e8c26d439eae2bb113c225e0e5",
+      },
+    })
+      .then((data) => data.json())
+      .then((mydata) => carouselPhotos(mydata))
+      .then(hideCard)
+      .catch((error) => console.error(alert(error)))
   }
   
   const loadcards = () => {
