@@ -1,5 +1,5 @@
 # FS-May21-M3D3
-Homework
+Homework : <a href="https://muarju.github.io/FS-May21-M3D3/">Have a look here</a>
 
        PICTURE ALBUM EXERCISE
 
