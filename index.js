@@ -44,6 +44,8 @@ window.onload = () => {
   }
   
   function getPhotos(mydata) {
+    console.log(mydata)
+    
     const cardImgs = document.querySelector("#main-cards")
     const { photos } = mydata
     cards = ""
@@ -84,6 +86,8 @@ window.onload = () => {
       `
     })
     cardImgs.innerHTML = cards
+
+    setTimeout(function () { alert(mydata.per_page + ' images loaded'); }, 5000);
   }
   
   function hideCard() {
